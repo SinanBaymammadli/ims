@@ -25,3 +25,4 @@ Route::get('/', 'HomeController@index')->name('index');
 
 Route::resource('user', "UserController");
 Route::resource('product', "ProductController");
+Route::resource('invoice', "InvoiceController");

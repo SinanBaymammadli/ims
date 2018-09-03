@@ -22,7 +22,7 @@ class ProductCreateFormRow extends Component {
           <input type="number" className="form-control" name="purchase_price[]" required />
         </td>
         <td>
-          <input type="number" className="form-control" name="order_price[]" required />
+          <input type="number" className="form-control" name="sale_price[]" required />
         </td>
         <td>
           {!isLast && (

@@ -11,7 +11,7 @@
                 <p>{{ $product->amount }}</p>
                 <p>{{ $product->min_required_amount }}</p>
                 <p>{{ $product->purchase_price }}</p>
-                <p>{{ $product->order_price }}</p>
+                <p>{{ $product->sale_price }}</p>
                 @if(auth()->user() && auth()->user()->can("delete-products"))
                     <button type="button" class="btn btn-sm btn-danger" data-product-id="{{ $product->id }}" data-toggle="modal" data-target="#deleteProductModal">
                         <i class="far fa-trash-alt"></i>Delete

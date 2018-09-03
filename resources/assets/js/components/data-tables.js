@@ -12,12 +12,7 @@ $("#product-table-js").DataTable({
   pageLength: 100,
 });
 
-$("#purchase-table-js").DataTable({
-  order: [[0, "desc"]],
-  pageLength: 100,
-});
-
-$("#order-table-js").DataTable({
+$("#invoice-table-js").DataTable({
   order: [[0, "desc"]],
   pageLength: 100,
 });

@@ -23,16 +23,9 @@ $("#deleteProductModal").on("show.bs.modal", e => {
   deleteResource(productId, deleteProductForm);
 });
 
-$("#deletePurchaseModal").on("show.bs.modal", e => {
-  const purchaseId = $(e.relatedTarget).data("purchaseId");
-  const deletePurchaseForm = $("#deletePurchaseForm");
+$("#deleteInvoiceModal").on("show.bs.modal", e => {
+  const invoiceId = $(e.relatedTarget).data("invoiceId");
+  const deleteInvoiceForm = $("#deleteInvoiceForm");
 
-  deleteResource(purchaseId, deletePurchaseForm);
-});
-
-$("#deleteOrderModal").on("show.bs.modal", e => {
-  const orderId = $(e.relatedTarget).data("orderId");
-  const deleteOrderForm = $("#deleteOrderForm");
-
-  deleteResource(orderId, deleteOrderForm);
+  deleteResource(invoiceId, deleteInvoiceForm);
 });

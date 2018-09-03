@@ -4,54 +4,52 @@
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="m-0">Products</h4>
+                <h4 class="m-0">Invoices</h4>
 
-                @if(auth()->user()->can("create-products"))
-                    <a class="btn btn-success" href="{{ route('product.create') }}">
+                @if(auth()->user()->can("create-invoices"))
+                    <a class="btn btn-success" href="{{ route('invoice.create') }}">
                         <i class="fas fa-plus"></i>
                         Add new
                     </a>
                 @endif
             </div>
             <div class="card-body">
-                <table class="table" id="product-table-js">
+                <table class="table" id="invoice-table-js">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Min required amount</th>
-                            <th scope="col">Purchase price</th>
-                            <th scope="col">Sale price</th>
+                            <th scope="col">Client name</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Sale type</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($products as $product)
+                        @foreach($invoices as $invoice)
                             <tr>
-                                <th scope="row">{{ $product->id }}</th>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->amount }}</td>
-                                <td>{{ $product->min_required_amount }}</td>
-                                <td>{{ $product->purchase_price }}</td>
-                                <td>{{ $product->sale_price }}</td>
+                                <th scope="row">{{ $invoice->id }}</th>
+                                <th scope="row">{{ $invoice->client->name }}</th>
+                                <th scope="row">{{ $invoice->total }}</th>
+                                <th scope="row">{{ $invoice->payment_method ? "Nagd" : "Nisye" }}</th>
+                                <th scope="row">{{ $invoice->is_sale ? "Satis" : "Alis" }}</th>
                                 <td>
-                                    @if(auth()->user()->can("delete-products"))
-                                        <button type="button" class="btn btn-sm btn-danger" data-product-id="{{ $product->id }}" data-toggle="modal" data-target="#deleteProductModal">
+                                    @if(auth()->user()->can("delete-invoices"))
+                                        <button type="button" class="btn btn-sm btn-danger" data-invoice-id="{{ $invoice->id }}" data-toggle="modal" data-target="#deleteInvoiceModal">
                                             <i class="far fa-trash-alt"></i>
                                             Delete
                                         </button>
                                     @endif
 
-                                    @if(auth()->user()->can("update-products"))
-                                        <a class="btn btn-sm btn-warning" href="{{ route('product.edit', ['id' => $product->id]) }}">
+                                    @if(auth()->user()->can("update-invoices"))
+                                        <a class="btn btn-sm btn-warning" href="{{ route('invoice.edit', ['id' => $invoice->id]) }}">
                                             <i class="far fa-edit"></i>
                                             Edit
                                         </a>
                                     @endif
 
-                                    @if(auth()->user()->can("read-products"))
-                                        <a class="btn btn-sm btn-info" href="{{ route('product.show', ['id' => $product->id]) }}">
+                                    @if(auth()->user()->can("read-invoices"))
+                                        <a class="btn btn-sm btn-info" href="{{ route('invoice.show', ['id' => $invoice->id]) }}">
                                             <i class="far fa-eye"></i>
                                             View
                                         </a>
@@ -67,12 +65,12 @@
 @endsection
 
 @section('extra')
-    <!-- Delete Product Modal -->
-    <div class="modal fade" id="deleteProductModal" tabindex="-1" role="dialog" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+    <!-- Delete Invoice Modal -->
+    <div class="modal fade" id="deleteInvoiceModal" tabindex="-1" role="dialog" aria-labelledby="deleteInvoiceModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteProductModalLabel">Delete Product</h5>
+                    <h5 class="modal-title" id="deleteInvoiceModalLabel">Delete Invoice</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -82,7 +80,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <form action="{{ route('product.destroy', ['id' => 0]) }}" method="post" id="deleteProductForm">
+                    <form action="{{ route('invoice.destroy', ['id' => 0]) }}" method="post" id="deleteInvoiceForm">
                         @csrf @method('delete')
                         <button class="btn btn-danger">Delete</button>
                     </form>

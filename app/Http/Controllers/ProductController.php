@@ -78,8 +78,8 @@ class ProductController extends Controller
             'min_required_amount.*' => ['required', 'integer', 'min:0'],
             'purchase_price' => ['required', 'array'],
             'purchase_price.*' => ['required', 'integer', 'min:0'],
-            'order_price' => ['required', 'array'],
-            'order_price.*' => ['required', 'integer', 'min:0'],
+            'sale_price' => ['required', 'array'],
+            'sale_price.*' => ['required', 'integer', 'min:0'],
         ]);
 
         for ($i = 0; $i < count($request->name); $i++) {
@@ -90,7 +90,7 @@ class ProductController extends Controller
             $product->amount = $request->amount[$i];
             $product->min_required_amount = $request->min_required_amount[$i];
             $product->purchase_price = $request->purchase_price[$i];
-            $product->order_price = $request->order_price[$i];
+            $product->sale_price = $request->sale_price[$i];
 
             $product->save();
         }

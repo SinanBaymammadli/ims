@@ -14113,8 +14113,7 @@ __webpack_require__(19);
 
 __webpack_require__(66);
 __webpack_require__(68);
-__webpack_require__(69);
-__webpack_require__(74);
+__webpack_require__(78);
 __webpack_require__(76);
 
 /***/ }),
@@ -54098,12 +54097,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#product-table-js").DataTable({
   pageLength: 100
 });
 
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()("#purchase-table-js").DataTable({
-  order: [[0, "desc"]],
-  pageLength: 100
-});
-
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()("#order-table-js").DataTable({
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()("#invoice-table-js").DataTable({
   order: [[0, "desc"]],
   pageLength: 100
 });
@@ -54337,173 +54331,15 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#deleteProductModal").on("show.b
   deleteResource(productId, deleteProductForm);
 });
 
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()("#deletePurchaseModal").on("show.bs.modal", function (e) {
-  var purchaseId = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(e.relatedTarget).data("purchaseId");
-  var deletePurchaseForm = __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#deletePurchaseForm");
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()("#deleteInvoiceModal").on("show.bs.modal", function (e) {
+  var invoiceId = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(e.relatedTarget).data("invoiceId");
+  var deleteInvoiceForm = __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#deleteInvoiceForm");
 
-  deleteResource(purchaseId, deletePurchaseForm);
-});
-
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()("#deleteOrderModal").on("show.bs.modal", function (e) {
-  var orderId = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(e.relatedTarget).data("orderId");
-  var deleteOrderForm = __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#deleteOrderForm");
-
-  deleteResource(orderId, deleteOrderForm);
+  deleteResource(invoiceId, deleteInvoiceForm);
 });
 
 /***/ }),
-/* 69 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v1__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v1___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_uuid_v1__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PurchaseCreateFormRow__ = __webpack_require__(73);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-var PurchaseCreateForm = function (_Component) {
-  _inherits(PurchaseCreateForm, _Component);
-
-  function PurchaseCreateForm() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, PurchaseCreateForm);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PurchaseCreateForm.__proto__ || Object.getPrototypeOf(PurchaseCreateForm)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      rows: [__WEBPACK_IMPORTED_MODULE_3_uuid_v1___default()()]
-    }, _this.addRow = function () {
-      _this.setState(function (prevState) {
-        return {
-          rows: [].concat(_toConsumableArray(prevState.rows), [__WEBPACK_IMPORTED_MODULE_3_uuid_v1___default()()])
-        };
-      });
-    }, _this.deleteRow = function (index) {
-      _this.setState(function (prevState) {
-        return {
-          rows: prevState.rows.filter(function (row) {
-            return row !== index;
-          })
-        };
-      });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(PurchaseCreateForm, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var products = this.props.products;
-      var rows = this.state.rows;
-
-
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "div",
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "div",
-          { className: "mb-3 d-flex justify-content-end" },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "button",
-            { type: "button", className: "btn btn-sm btn-primary", onClick: this.addRow },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-plus" }),
-            "Add"
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "table",
-          { className: "table" },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "thead",
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "tr",
-              null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "th",
-                { scope: "col" },
-                "Name"
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "th",
-                { scope: "col" },
-                "Amount"
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "th",
-                { scope: "col" },
-                "Price"
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "th",
-                { scope: "col" },
-                "Action"
-              )
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "tbody",
-            null,
-            rows.map(function (row) {
-              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__PurchaseCreateFormRow__["a" /* default */], {
-                key: row,
-                products: products,
-                deleteRow: _this2.deleteRow,
-                index: row,
-                isLast: rows.length === 1
-              });
-            })
-          )
-        )
-      );
-    }
-  }]);
-
-  return PurchaseCreateForm;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-PurchaseCreateForm.propTypes = {
-  products: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({}).isRequired).isRequired
-};
-
-var purchaseCreateForm = document.getElementById("purchase-create-form");
-
-if (purchaseCreateForm) {
-  var products = purchaseCreateForm.dataset.products;
-
-
-  __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(PurchaseCreateForm, { products: JSON.parse(products) }), purchaseCreateForm);
-}
-
-/***/ }),
+/* 69 */,
 /* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -55136,372 +54972,9 @@ module.exports = bytesToUuid;
 
 
 /***/ }),
-/* 73 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var PurchaseCreateFormRow = function (_Component) {
-  _inherits(PurchaseCreateFormRow, _Component);
-
-  function PurchaseCreateFormRow() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, PurchaseCreateFormRow);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PurchaseCreateFormRow.__proto__ || Object.getPrototypeOf(PurchaseCreateFormRow)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(PurchaseCreateFormRow, [{
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          products = _props.products,
-          deleteRow = _props.deleteRow,
-          index = _props.index,
-          isLast = _props.isLast;
-
-
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "tr",
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "td",
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "select",
-            { className: "custom-select form-control", name: "product_id[]" },
-            products.map(function (product) {
-              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "option",
-                { key: product.id, value: product.id },
-                product.name
-              );
-            })
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "td",
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "number", className: "form-control", name: "amount[]", required: true })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "td",
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "number", className: "form-control", name: "price[]", required: true })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "td",
-          null,
-          !isLast && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "button",
-            {
-              type: "button",
-              className: "btn btn-sm btn-danger",
-              onClick: function onClick() {
-                return deleteRow(index);
-              }
-            },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "far fa-trash-alt" }),
-            "Delete"
-          )
-        )
-      );
-    }
-  }]);
-
-  return PurchaseCreateFormRow;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-PurchaseCreateFormRow.propTypes = {
-  products: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({}).isRequired).isRequired,
-  deleteRow: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
-  index: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
-  isLast: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (PurchaseCreateFormRow);
-
-/***/ }),
-/* 74 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v1__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v1___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_uuid_v1__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__OrderCreateFormRow__ = __webpack_require__(75);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-var OrderCreateForm = function (_Component) {
-  _inherits(OrderCreateForm, _Component);
-
-  function OrderCreateForm() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, OrderCreateForm);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderCreateForm.__proto__ || Object.getPrototypeOf(OrderCreateForm)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      rows: [__WEBPACK_IMPORTED_MODULE_3_uuid_v1___default()()]
-    }, _this.addRow = function () {
-      _this.setState(function (prevState) {
-        return {
-          rows: [].concat(_toConsumableArray(prevState.rows), [__WEBPACK_IMPORTED_MODULE_3_uuid_v1___default()()])
-        };
-      });
-    }, _this.deleteRow = function (index) {
-      _this.setState(function (prevState) {
-        return {
-          rows: prevState.rows.filter(function (row) {
-            return row !== index;
-          })
-        };
-      });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(OrderCreateForm, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var products = this.props.products;
-      var rows = this.state.rows;
-
-
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "div",
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "div",
-          { className: "mb-3 d-flex justify-content-end" },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "button",
-            { type: "button", className: "btn btn-sm btn-primary", onClick: this.addRow },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-plus" }),
-            "Add"
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "table",
-          { className: "table" },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "thead",
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "tr",
-              null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "th",
-                { scope: "col" },
-                "Name"
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "th",
-                { scope: "col" },
-                "Amount"
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "th",
-                { scope: "col" },
-                "Price"
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "th",
-                { scope: "col" },
-                "Action"
-              )
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "tbody",
-            null,
-            rows.map(function (row) {
-              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__OrderCreateFormRow__["a" /* default */], {
-                key: row,
-                products: products,
-                deleteRow: _this2.deleteRow,
-                index: row,
-                isLast: rows.length === 1
-              });
-            })
-          )
-        )
-      );
-    }
-  }]);
-
-  return OrderCreateForm;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-OrderCreateForm.propTypes = {
-  products: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({}).isRequired).isRequired
-};
-
-var orderCreateForm = document.getElementById("order-create-form");
-
-if (orderCreateForm) {
-  var products = orderCreateForm.dataset.products;
-
-
-  __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(OrderCreateForm, { products: JSON.parse(products) }), orderCreateForm);
-}
-
-/***/ }),
-/* 75 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var OrderCreateFormRow = function (_Component) {
-  _inherits(OrderCreateFormRow, _Component);
-
-  function OrderCreateFormRow() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, OrderCreateFormRow);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderCreateFormRow.__proto__ || Object.getPrototypeOf(OrderCreateFormRow)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(OrderCreateFormRow, [{
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          products = _props.products,
-          deleteRow = _props.deleteRow,
-          index = _props.index,
-          isLast = _props.isLast;
-
-
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "tr",
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "td",
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "select",
-            { className: "custom-select form-control", name: "product_id[]" },
-            products.map(function (product) {
-              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "option",
-                { key: product.id, value: product.id },
-                product.name
-              );
-            })
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "td",
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "number", className: "form-control", name: "amount[]", required: true })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "td",
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "number", className: "form-control", name: "price[]", required: true })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "td",
-          null,
-          !isLast && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "button",
-            {
-              type: "button",
-              className: "btn btn-sm btn-danger",
-              onClick: function onClick() {
-                return deleteRow(index);
-              }
-            },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "far fa-trash-alt" }),
-            "Delete"
-          )
-        )
-      );
-    }
-  }]);
-
-  return OrderCreateFormRow;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-OrderCreateFormRow.propTypes = {
-  products: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({}).isRequired).isRequired,
-  deleteRow: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
-  index: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
-  isLast: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (OrderCreateFormRow);
-
-/***/ }),
+/* 73 */,
+/* 74 */,
+/* 75 */,
 /* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -55723,7 +55196,7 @@ var ProductCreateFormRow = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "td",
           null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "number", className: "form-control", name: "order_price[]", required: true })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "number", className: "form-control", name: "sale_price[]", required: true })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "td",
@@ -55755,6 +55228,548 @@ ProductCreateFormRow.propTypes = {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (ProductCreateFormRow);
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v1__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v1___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_uuid_v1__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__InvoiceCreateFormRow__ = __webpack_require__(79);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+var InvoiceCreateForm = function (_Component) {
+  _inherits(InvoiceCreateForm, _Component);
+
+  function InvoiceCreateForm() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, InvoiceCreateForm);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InvoiceCreateForm.__proto__ || Object.getPrototypeOf(InvoiceCreateForm)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      rows: [{
+        price: 0,
+        index: __WEBPACK_IMPORTED_MODULE_3_uuid_v1___default()()
+      }],
+      totalPrice: 0,
+      newClient: true
+    }, _this.addRow = function () {
+      _this.setState(function (prevState) {
+        return {
+          rows: [].concat(_toConsumableArray(prevState.rows), [{
+            price: 0,
+            index: __WEBPACK_IMPORTED_MODULE_3_uuid_v1___default()()
+          }])
+        };
+      });
+    }, _this.deleteRow = function (index) {
+      _this.setState(function (prevState) {
+        return {
+          rows: prevState.rows.filter(function (row) {
+            return row !== index;
+          })
+        };
+      });
+    }, _this.clientChanged = function (e) {
+      _this.setState({
+        newClient: e.target.value == 0
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(InvoiceCreateForm, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          products = _props.products,
+          clients = _props.clients;
+      var _state = this.state,
+          rows = _state.rows,
+          totalPrice = _state.totalPrice,
+          newClient = _state.newClient;
+
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "row" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "col" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              { className: "form-group" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "label",
+                { htmlFor: "client_id" },
+                "Client"
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "select",
+                {
+                  className: "custom-select form-control",
+                  name: "client_id",
+                  onChange: this.clientChanged
+                },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "option",
+                  { value: "0" },
+                  "Add new"
+                ),
+                clients.map(function (client) {
+                  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "option",
+                    { key: client.id, value: client.id },
+                    client.name
+                  );
+                })
+              )
+            ),
+            newClient && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "form-group" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "label",
+                  { htmlFor: "name" },
+                  "Client name"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "form-control", type: "text", name: "name", id: "name" })
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "form-group" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "label",
+                  { htmlFor: "about" },
+                  "Client about"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "form-control", type: "text", name: "about", id: "about" })
+              )
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "col" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              { className: "row form-group" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "col" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "label",
+                  { htmlFor: "payment_method" },
+                  "Payment method"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "div",
+                  { className: "row" },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "div",
+                      { className: "form-check" },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                        className: "form-check-input",
+                        type: "radio",
+                        name: "payment_method",
+                        id: "payment_method1",
+                        value: "0",
+                        defaultChecked: true
+                      }),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "label",
+                        { className: "form-check-label", htmlFor: "payment_method1" },
+                        "Nisye"
+                      )
+                    )
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "div",
+                      { className: "form-check" },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                        className: "form-check-input",
+                        type: "radio",
+                        name: "payment_method",
+                        id: "payment_method2",
+                        value: "1"
+                      }),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "label",
+                        { className: "form-check-label", htmlFor: "payment_method2" },
+                        "Nagd"
+                      )
+                    )
+                  )
+                )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              { className: "row form-group" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "col" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "label",
+                  { htmlFor: "is_sale" },
+                  "Invoice type"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "div",
+                  { className: "row" },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "div",
+                      { className: "form-check" },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                        className: "form-check-input",
+                        type: "radio",
+                        name: "is_sale",
+                        id: "is_sale1",
+                        value: "0",
+                        defaultChecked: true
+                      }),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "label",
+                        { className: "form-check-label", htmlFor: "is_sale1" },
+                        "Alis"
+                      )
+                    )
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "div",
+                      { className: "form-check" },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                        className: "form-check-input",
+                        type: "radio",
+                        name: "is_sale",
+                        id: "is_sale2",
+                        value: "1"
+                      }),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "label",
+                        { className: "form-check-label", htmlFor: "is_sale2" },
+                        "Satis"
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "mb-3 d-flex justify-content-end" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "button",
+            { type: "button", className: "btn btn-sm btn-primary", onClick: this.addRow },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-plus" }),
+            "Add"
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "table",
+          { className: "table" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "thead",
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "tr",
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "th",
+                { scope: "col" },
+                "Name"
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "th",
+                { scope: "col" },
+                "Amount"
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "th",
+                { scope: "col" },
+                "Price"
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "th",
+                { scope: "col" },
+                "Total"
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "th",
+                { scope: "col" },
+                "Action"
+              )
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "tbody",
+            null,
+            rows.map(function (row) {
+              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__InvoiceCreateFormRow__["a" /* default */], {
+                key: row.index,
+                products: products,
+                deleteRow: _this2.deleteRow,
+                index: row.index,
+                isLast: rows.length === 1,
+                totalChanged: function totalChanged(total) {
+                  return _this2.setState({
+                    rows: rows.map(function (stateRow) {
+                      if (stateRow.index !== row.index) {
+                        return stateRow;
+                      }
+
+                      return {
+                        index: row.index,
+                        price: total
+                      };
+                    })
+                  }, function () {
+                    _this2.setState(function (prevState) {
+                      return {
+                        totalPrice: prevState.rows.reduce(function (carry, stateRow) {
+                          return carry + stateRow.price;
+                        }, 0)
+                      };
+                    });
+                  });
+                }
+              });
+            }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "tr",
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "td",
+                { colSpan: "5" },
+                "Total: ",
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "form-control", readOnly: true, name: "total", value: totalPrice })
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return InvoiceCreateForm;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+InvoiceCreateForm.propTypes = {
+  products: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({}).isRequired).isRequired
+};
+
+var invoiceCreateForm = document.getElementById("invoice-create-form");
+
+if (invoiceCreateForm) {
+  var _invoiceCreateForm$da = invoiceCreateForm.dataset,
+      products = _invoiceCreateForm$da.products,
+      clients = _invoiceCreateForm$da.clients;
+
+
+  __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(InvoiceCreateForm, { products: JSON.parse(products), clients: JSON.parse(clients) }), invoiceCreateForm);
+}
+
+/***/ }),
+/* 79 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var InvoiceCreateFormRow = function (_Component) {
+  _inherits(InvoiceCreateFormRow, _Component);
+
+  function InvoiceCreateFormRow() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, InvoiceCreateFormRow);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InvoiceCreateFormRow.__proto__ || Object.getPrototypeOf(InvoiceCreateFormRow)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      amount: 0,
+      price: 0,
+      total: 0
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(InvoiceCreateFormRow, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          products = _props.products,
+          deleteRow = _props.deleteRow,
+          index = _props.index,
+          isLast = _props.isLast,
+          totalChanged = _props.totalChanged;
+      var total = this.state.total;
+
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "tr",
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "td",
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "select",
+            { className: "custom-select form-control", name: "product_id[]" },
+            products.map(function (product) {
+              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "option",
+                { key: product.id, value: product.id },
+                product.name
+              );
+            })
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "td",
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+            type: "number",
+            className: "form-control",
+            name: "amount[]",
+            required: true,
+            onChange: function onChange(e) {
+              var val = e.target.value;
+              _this2.setState(function (prevState) {
+                return {
+                  amount: val,
+                  total: (prevState.price || 0) * (val || 0)
+                };
+              }, function () {
+                totalChanged(_this2.state.total);
+              });
+            }
+          })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "td",
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+            type: "number",
+            className: "form-control",
+            name: "price[]",
+            required: true,
+            onChange: function onChange(e) {
+              var val = e.target.value;
+              _this2.setState(function (prevState) {
+                return {
+                  price: val,
+                  total: (prevState.amount || 0) * (val || 0)
+                };
+              }, function () {
+                totalChanged(_this2.state.total);
+              });
+            }
+          })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "td",
+          null,
+          total
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "td",
+          null,
+          !isLast && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "button",
+            {
+              type: "button",
+              className: "btn btn-sm btn-danger",
+              onClick: function onClick() {
+                return deleteRow(index);
+              }
+            },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "far fa-trash-alt" }),
+            "Delete"
+          )
+        )
+      );
+    }
+  }]);
+
+  return InvoiceCreateFormRow;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+InvoiceCreateFormRow.propTypes = {
+  products: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({}).isRequired).isRequired,
+  deleteRow: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
+  index: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
+  isLast: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired,
+  totalChanged: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (InvoiceCreateFormRow);
 
 /***/ })
 /******/ ]);
