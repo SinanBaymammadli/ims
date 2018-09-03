@@ -29,12 +29,12 @@
                     <tbody>
                         @foreach($invoices as $invoice)
                             <tr>
-                                <th scope="row">{{ $invoice->id }}</th>
-                                <th scope="row">{{ $invoice->client->name }}</th>
-                                <th scope="row">{{ $invoice->total }}</th>
-                                <th scope="row">{{ $invoice->payment_method ? "Nagd" : "Nisye" }}</th>
-                                <th scope="row">{{ $invoice->is_sale ? "Satis" : "Alis" }}</th>
-                                <th scope="row">{{ $invoice->created_at }}</th>
+                                <td scope="row">{{ $invoice->id }}</td>
+                                <td scope="row">{{ $invoice->client->name }}</td>
+                                <td scope="row">{{ $invoice->total }}</td>
+                                <td scope="row">{{ $invoice->payment_metdod ? "Nagd" : "Nisye" }}</td>
+                                <td scope="row">{{ $invoice->is_sale ? "Satis" : "Alis" }}</td>
+                                <td scope="row">{{ $invoice->created_at }}</td>
                                 <td>
                                     @if(auth()->user()->can("delete-invoices"))
                                         <button type="button" class="btn btn-sm btn-danger" data-invoice-id="{{ $invoice->id }}" data-toggle="modal" data-target="#deleteInvoiceModal">

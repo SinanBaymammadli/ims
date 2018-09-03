@@ -20,7 +20,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @foreach ($alerts as $alert)
+                        <div class="alert alert-danger" role="alert">
+                            Only <strong>{{ $alert->amount }} {{ $alert->name }}</strong> remaining.
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

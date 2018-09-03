@@ -10,11 +10,11 @@ class InvoiceCreateForm extends Component {
     rows: [
       {
         price: 0,
-        index: uuid(),
-      },
+        index: uuid()
+      }
     ],
     totalPrice: 0,
-    newClient: true,
+    newClient: true
   };
 
   addRow = () => {
@@ -23,21 +23,21 @@ class InvoiceCreateForm extends Component {
         ...prevState.rows,
         {
           price: 0,
-          index: uuid(),
-        },
-      ],
+          index: uuid()
+        }
+      ]
     }));
   };
 
   deleteRow = index => {
     this.setState(prevState => ({
-      rows: prevState.rows.filter(row => row !== index),
+      rows: prevState.rows.filter(row => row !== index)
     }));
   };
 
   clientChanged = e => {
     this.setState({
-      newClient: e.target.value == 0,
+      newClient: e.target.value == 0
     });
   };
 
@@ -69,11 +69,21 @@ class InvoiceCreateForm extends Component {
               <div>
                 <div className="form-group">
                   <label htmlFor="name">Client name</label>
-                  <input className="form-control" type="text" name="name" id="name" />
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="name"
+                    id="name"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="about">Client about</label>
-                  <input className="form-control" type="text" name="about" id="about" />
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="about"
+                    id="about"
+                  />
                 </div>
               </div>
             )}
@@ -92,9 +102,11 @@ class InvoiceCreateForm extends Component {
                         name="payment_method"
                         id="payment_method1"
                         value="0"
-                        defaultChecked
                       />
-                      <label className="form-check-label" htmlFor="payment_method1">
+                      <label
+                        className="form-check-label"
+                        htmlFor="payment_method1"
+                      >
                         Nisye
                       </label>
                     </div>
@@ -107,8 +119,12 @@ class InvoiceCreateForm extends Component {
                         name="payment_method"
                         id="payment_method2"
                         value="1"
+                        defaultChecked
                       />
-                      <label className="form-check-label" htmlFor="payment_method2">
+                      <label
+                        className="form-check-label"
+                        htmlFor="payment_method2"
+                      >
                         Nagd
                       </label>
                     </div>
@@ -129,7 +145,6 @@ class InvoiceCreateForm extends Component {
                         name="is_sale"
                         id="is_sale1"
                         value="0"
-                        defaultChecked
                       />
                       <label className="form-check-label" htmlFor="is_sale1">
                         Alis
@@ -144,6 +159,7 @@ class InvoiceCreateForm extends Component {
                         name="is_sale"
                         id="is_sale2"
                         value="1"
+                        defaultChecked
                       />
                       <label className="form-check-label" htmlFor="is_sale2">
                         Satis
@@ -157,7 +173,11 @@ class InvoiceCreateForm extends Component {
         </div>
 
         <div className="mb-3 d-flex justify-content-end">
-          <button type="button" className="btn btn-sm btn-primary" onClick={this.addRow}>
+          <button
+            type="button"
+            className="btn btn-sm btn-primary"
+            onClick={this.addRow}
+          >
             <i className="fas fa-plus" />
             Add
           </button>
@@ -191,16 +211,16 @@ class InvoiceCreateForm extends Component {
 
                         return {
                           index: row.index,
-                          price: total,
+                          price: total
                         };
-                      }),
+                      })
                     },
                     () => {
                       this.setState(prevState => ({
                         totalPrice: prevState.rows.reduce(
                           (carry, stateRow) => carry + stateRow.price,
                           0
-                        ),
+                        )
                       }));
                     }
                   )
@@ -209,7 +229,13 @@ class InvoiceCreateForm extends Component {
             ))}
             <tr>
               <td colSpan="5">
-                Total: <input className="form-control" readOnly name="total" value={totalPrice} />
+                Total:{" "}
+                <input
+                  className="form-control"
+                  readOnly
+                  name="total"
+                  value={totalPrice}
+                />
               </td>
             </tr>
           </tbody>
@@ -220,7 +246,7 @@ class InvoiceCreateForm extends Component {
 }
 
 InvoiceCreateForm.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
 };
 
 const invoiceCreateForm = document.getElementById("invoice-create-form");
@@ -229,7 +255,10 @@ if (invoiceCreateForm) {
   const { products, clients } = invoiceCreateForm.dataset;
 
   ReactDOM.render(
-    <InvoiceCreateForm products={JSON.parse(products)} clients={JSON.parse(clients)} />,
+    <InvoiceCreateForm
+      products={JSON.parse(products)}
+      clients={JSON.parse(clients)}
+    />,
     invoiceCreateForm
   );
 }
