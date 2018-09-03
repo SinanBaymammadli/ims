@@ -2,24 +2,20 @@
 
 return [
     'role_structure' => [
-        'superadministrator' => [
+        'superadmin' => [
+            'logs' => 'r',
             'users' => 'c,r,u,d',
-            'acl' => 'c,r,u,d',
-            'profile' => 'r,u',
+            'products' => 'c,r,u,d',
         ],
-        'administrator' => [
+        'admin' => [
             'users' => 'c,r,u,d',
-            'profile' => 'r,u',
+            'products' => 'c,r,u,d',
         ],
         'user' => [
-            'profile' => 'r,u',
+            'products' => 'c,r,u,d',
         ],
     ],
-    'permission_structure' => [
-        'cru_user' => [
-            'profile' => 'c,r,u',
-        ],
-    ],
+    'permission_structure' => [],
     'permissions_map' => [
         'c' => 'create',
         'r' => 'read',
