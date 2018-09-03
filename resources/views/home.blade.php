@@ -14,6 +14,12 @@
                         </div>
                     @endif
 
+                    @if($errors->has('permission'))
+                        <div class="alert alert-danger alert-animated" role="alert">
+                            <strong>{{ $errors->first('permission') }}</strong>
+                        </div>
+                    @endif
+
                     You are logged in!
                 </div>
             </div>
