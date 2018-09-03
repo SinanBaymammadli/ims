@@ -81,7 +81,7 @@ class InvoiceController extends Controller
 
             // client if exist
             'name' => ['sometimes', 'required', 'string'],
-            'about' => ['sometimes', 'required', 'string'],
+            'about' => ['sometimes', 'string', 'nullable'],
 
             // orders
             'product_id' => ['required', 'array'],

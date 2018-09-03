@@ -3,27 +3,26 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <div class="card-header">
-                About
+            <div class="card-header d-flex justify-content-between align-items-center">
+                Invoice #{{ $invoice->id }}
+
+                <div>
+                    @if(auth()->user() && auth()->user()->can("delete-invoices"))
+                        <button type="button" class="btn btn-sm btn-danger" data-invoice-id="{{ $invoice->id }}" data-toggle="modal" data-target="#deleteInvoiceModal">
+                            <i class="far fa-trash-alt"></i>
+                            Delete
+                        </button>
+                    @endif
+
+                    @if(auth()->user() && auth()->user()->can("update-invoices"))
+                        <a class="btn btn-sm btn-warning" href="{{ route('invoice.edit', ['id' => $invoice->id]) }}">
+                            <i class="far fa-edit"></i>
+                            Edit
+                        </a>
+                    @endif
+                </div>
             </div>
             <div class="card-body">
-                <h2>{{ $invoice->id }}</h2>
-
-
-                @if(auth()->user() && auth()->user()->can("delete-invoices"))
-                    <button type="button" class="btn btn-sm btn-danger" data-invoice-id="{{ $invoice->id }}" data-toggle="modal" data-target="#deleteInvoiceModal">
-                        <i class="far fa-trash-alt"></i>
-                        Delete
-                    </button>
-                @endif
-
-                @if(auth()->user() && auth()->user()->can("update-invoices"))
-                    <a class="btn btn-sm btn-warning" href="{{ route('invoice.edit', ['id' => $invoice->id]) }}">
-                        <i class="far fa-edit"></i>
-                        Edit
-                    </a>
-                @endif
-
                 <p>{{ $invoice->client->name }}</p>
                 <p>{{ $invoice->total }}</p>
 
