@@ -22,6 +22,7 @@
                             <th scope="col">Total</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Sale type</th>
+                            <th scope="col">Date</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -33,6 +34,7 @@
                                 <th scope="row">{{ $invoice->total }}</th>
                                 <th scope="row">{{ $invoice->payment_method ? "Nagd" : "Nisye" }}</th>
                                 <th scope="row">{{ $invoice->is_sale ? "Satis" : "Alis" }}</th>
+                                <th scope="row">{{ $invoice->created_at }}</th>
                                 <td>
                                     @if(auth()->user()->can("delete-invoices"))
                                         <button type="button" class="btn btn-sm btn-danger" data-invoice-id="{{ $invoice->id }}" data-toggle="modal" data-target="#deleteInvoiceModal">
@@ -58,6 +60,12 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="6" style="text-align:right">Total:</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

@@ -54099,7 +54099,26 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#product-table-js").DataTable({
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#invoice-table-js").DataTable({
   order: [[0, "desc"]],
-  pageLength: 100
+  pageLength: 100,
+  footerCallback: function footerCallback(row, data, start, end, display) {
+    var api = this.api();
+    // var data;
+
+    // Remove the formatting to get integer data for summation
+    var intVal = function intVal(i) {
+      return parseInt(i, 10);
+    };
+
+    // Total over this page
+    var pageTotal = api.column(2, { page: "current" }).data().reduce(function (a, b) {
+      return intVal(a) + intVal(b);
+    }, 0);
+
+    console.log(pageTotal);
+
+    // Update footer
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(api.column(2).footer()).html("TOTAL: AZN " + pageTotal / 100);
+  }
 });
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#log-table-js").DataTable({
