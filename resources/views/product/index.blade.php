@@ -14,15 +14,15 @@
                 @endif
             </div>
             <div class="card-body">
-                <table class="table" id="product-table-js">
+                <table class="table table-hover" id="product-table-js">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Min required amount</th>
-                            <th scope="col">Purchase price</th>
-                            <th scope="col">Sale price</th>
+                            <th scope="col">Min required <br> amount</th>
+                            <th scope="col">Purchase price <br>(AZN)</th>
+                            <th scope="col">Sale price <br>(AZN)</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -33,8 +33,8 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->amount }}</td>
                                 <td>{{ $product->min_required_amount }}</td>
-                                <td>{{ $product->purchase_price }}</td>
-                                <td>{{ $product->sale_price }}</td>
+                                <td>{{ $product->purchase_price / 100 }}</td>
+                                <td>{{ $product->sale_price / 100 }}</td>
                                 <td>
                                     @if(auth()->user()->can("delete-products"))
                                         <button type="button" class="btn btn-sm btn-danger" data-product-id="{{ $product->id }}" data-toggle="modal" data-target="#deleteProductModal">

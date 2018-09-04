@@ -14,12 +14,12 @@
                 @endif
             </div>
             <div class="card-body">
-                <table class="table" id="invoice-table-js">
+                <table class="table table-hover" id="invoice-table-js">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Client name</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">Total (AZN)</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Sale type</th>
                             <th scope="col">Date</th>
@@ -31,7 +31,7 @@
                             <tr>
                                 <td scope="row">{{ $invoice->id }}</td>
                                 <td scope="row">{{ $invoice->client->name }}</td>
-                                <td scope="row">{{ $invoice->total }}</td>
+                                <td scope="row">{{ $invoice->total / 100 }}</td>
                                 <td scope="row">{{ $invoice->payment_metdod ? "Nagd" : "Nisye" }}</td>
                                 <td scope="row">{{ $invoice->is_sale ? "Satis" : "Alis" }}</td>
                                 <td scope="row">{{ $invoice->created_at }}</td>

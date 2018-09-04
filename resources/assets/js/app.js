@@ -16,3 +16,4 @@ require("./components/data-tables");
 require("./components/delete-modals");
 require("./invoice/InvoiceCreateForm");
 require("./product/ProductCreateForm");
+require("./statistic/Statistics");
