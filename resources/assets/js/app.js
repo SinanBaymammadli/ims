@@ -14,6 +14,7 @@ require("./bootstrap");
 
 require("./components/data-tables");
 require("./components/delete-modals");
+require("./components/print");
 require("./invoice/InvoiceCreateForm");
 require("./product/ProductCreateForm");
 require("./statistic/Statistics");

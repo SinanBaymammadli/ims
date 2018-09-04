@@ -126,7 +126,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!auth()->user()->can('update-products')) {
+            return redirect()->route('index')
+                ->withErrors([
+                    'permission' => trans('permission.failed'),
+                ]);
+        }
+
+        $product = Product::findOrFail($id);
+
+        return view("product.edit", ['product' => $product]);
     }
 
     /**
@@ -138,7 +147,36 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = auth()->user();
+
+        if (!$user->can('update-products')) {
+            return redirect()->route('index')
+                ->withErrors([
+                    'permission' => trans('permission.failed'),
+                ]);
+        }
+
+        // validate request
+        $request->validate([
+            'name' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($id)],
+            'amount' => ['required', 'integer', 'min:1'],
+            'min_required_amount' => ['required', 'integer', 'min:1'],
+            'purchase_price' => ['required', 'integer', 'min:1'],
+            'sale_price' => ['required', 'integer', 'min:1'],
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        $product->user_id = $user->id;
+        $product->name = $request->name;
+        $product->amount = $request->amount;
+        $product->min_required_amount = $request->min_required_amount;
+        $product->purchase_price = $request->purchase_price;
+        $product->sale_price = $request->sale_price;
+
+        $product->save();
+
+        return redirect()->route('product.index');
     }
 
     /**

@@ -14,21 +14,50 @@
                         </button>
                     @endif
 
-                    @if(auth()->user() && auth()->user()->can("update-invoices"))
+                    {{-- @if(auth()->user() && auth()->user()->can("update-invoices"))
                         <a class="btn btn-sm btn-warning" href="{{ route('invoice.edit', ['id' => $invoice->id]) }}">
                             <i class="far fa-edit"></i>
                             Edit
                         </a>
-                    @endif
+                    @endif --}}
+
+                    <button class="btn btn-sm btn-primary" id="js-print-btn">
+                        <i class="fas fa-print"></i>
+                        Print
+                    </button>
                 </div>
             </div>
-            <div class="card-body">
-                <p>{{ $invoice->client->name }}</p>
-                <p>{{ $invoice->total }}</p>
-
-                @foreach ($invoice->orders as $order)
-                    <p>{{ $order->product->name }}</p>
-                @endforeach
+            <div class="card-body" id="print">
+                <table class="invoice-table" border="1" style="width: 100%; border-collapse: collapse;" cellpadding="5">
+                    <tr>
+                        <td colspan="2">Company Name</td>
+                        <td colspan="2">Invoice #{{ $invoice->id }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Client name: {{ $invoice->client->name }}</td>
+                        <td colspan="2">Date: {{ $invoice->created_at }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">Products</td>
+                    </tr>
+                    <tr>
+                        <td>Adi</td>
+                        <td>Miqdar</td>
+                        <td>Qiymet</td>
+                        <td>Cem</td>
+                    </tr>
+                    @foreach ($invoice->orders as $order)
+                        <tr>
+                            <td>{{ $order->product->name }}</td>
+                            <td>{{ $order->amount }}</td>
+                            <td>{{ $order->price }}</td>
+                            <td>{{ $order->amount * $order->price / 100 }}</td>
+                        </tr>
+                    @endforeach
+                    <tr>
+                        <td colspan="4" style="text-align: right">Umumi cem: {{ $invoice->total / 100 }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

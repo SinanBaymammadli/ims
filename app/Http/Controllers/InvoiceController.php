@@ -72,7 +72,7 @@ class InvoiceController extends Controller
         }
 
         // validate request
-        $request->validate([
+        $validations = [
             //invoice
             'client_id' => ['required', 'integer'],
             'payment_method' => ['required', 'boolean'],
@@ -87,12 +87,18 @@ class InvoiceController extends Controller
             'product_id' => ['required', 'array'],
             'product_id.*' => ['required', 'exists:products,id'],
             'amount' => ['required', 'array'],
-            'amount.*' => ['required', 'integer', 'min:0'],
             'price' => ['required', 'array'],
             'price.*' => ['required', 'integer', 'min:0'],
-        ]);
+        ];
 
-        //dd($request->all());
+        for ($i = 0; $i < count($request->product_id); $i++) {
+            // add each product max amount
+            $product = Product::findOrFail($request->product_id[$i]);
+            $validations["amount.$i"] = ['required', 'integer', 'min:0', "max:$product->amount"];
+        }
+
+        // run validation
+        $request->validate($validations);
 
         $invoice = new Invoice;
         $invoice->user_id = $user->id;
@@ -158,7 +164,19 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        // if (!auth()->user()->can('update-invoices')) {
+        //     return redirect()->route('index')
+        //         ->withErrors([
+        //             'permission' => trans('permission.failed'),
+        //         ]);
+        // }
+
+        // $invoice = Invoice::with('client')->with('orders.product')->findOrFail($id);
+
+        // $clients = Client::all();
+        // $products = Product::all();
+
+        // return view("invoice.edit", ['invoice' => $invoice, 'products' => $products, 'clients' => $clients]);
     }
 
     /**
@@ -181,6 +199,27 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!auth()->user()->can('delete-invoices')) {
+            return redirect()->route('index')
+                ->withErrors([
+                    'permission' => trans('permission.failed'),
+                ]);
+        }
+
+        $invoice = Invoice::with('orders')->findOrFail($id);
+
+        for ($i = 0; $i < count($invoice->orders); $i++) {
+            // change product amount
+            $product = Product::findOrFail($invoice->orders[$i]->product_id);
+
+            $product->amount = $invoice->is_sale
+            ? $product->amount + $invoice->orders[$i]->amount
+            : $product->amount - $invoice->orders[$i]->amount;
+
+            $product->save();
+        }
+
+        $invoice->delete();
+        return redirect()->route('invoice.index');
     }
 }

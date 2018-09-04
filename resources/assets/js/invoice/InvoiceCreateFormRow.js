@@ -9,11 +9,12 @@ class InvoiceCreateFormRow extends Component {
   };
 
   render() {
-    const { products, deleteRow, index, isLast, totalChanged } = this.props;
+    const { products, deleteRow, index, isLast, totalChanged, position } = this.props;
     const { total } = this.state;
 
     return (
       <tr>
+        <td>{position}</td>
         <td>
           <select className="custom-select form-control" name="product_id[]">
             {products.map(product => (
@@ -63,7 +64,7 @@ class InvoiceCreateFormRow extends Component {
             }}
           />
         </td>
-        <td>{total}</td>
+        <td>{total / 100}</td>
         <td>
           {!isLast && (
             <button

@@ -15,7 +15,7 @@ class AddInvoiceOrderRelationship extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->foreign('invoice_id')->references('id')
-                ->on('invoices');
+                ->on('invoices')->onDelete('cascade');
         });
     }
 

@@ -32,7 +32,7 @@
                                 <td scope="row">{{ $invoice->id }}</td>
                                 <td scope="row">{{ $invoice->client->name }}</td>
                                 <td scope="row">{{ $invoice->total / 100 }}</td>
-                                <td scope="row">{{ $invoice->payment_metdod ? "Nagd" : "Nisye" }}</td>
+                                <td scope="row">{{ $invoice->payment_method ? "Nagd" : "Nisye" }}</td>
                                 <td scope="row">{{ $invoice->is_sale ? "Satis" : "Alis" }}</td>
                                 <td scope="row">{{ $invoice->created_at }}</td>
                                 <td>
@@ -43,15 +43,15 @@
                                         </button>
                                     @endif
 
-                                    @if(auth()->user()->can("update-invoices"))
+                                    {{-- @if(auth()->user()->can("update-invoices"))
                                         <a class="btn btn-sm btn-warning" href="{{ route('invoice.edit', ['id' => $invoice->id]) }}">
                                             <i class="far fa-edit"></i>
                                             Edit
                                         </a>
-                                    @endif
+                                    @endif --}}
 
                                     @if(auth()->user()->can("read-invoices"))
-                                        <a class="btn btn-sm btn-info" href="{{ route('invoice.show', ['id' => $invoice->id]) }}">
+                                        <a class="btn btn-sm btn-info text-white" href="{{ route('invoice.show', ['id' => $invoice->id]) }}">
                                             <i class="far fa-eye"></i>
                                             View
                                         </a>

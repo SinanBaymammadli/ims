@@ -36,12 +36,12 @@
                                 <td>{{ $product->purchase_price / 100 }}</td>
                                 <td>{{ $product->sale_price / 100 }}</td>
                                 <td>
-                                    @if(auth()->user()->can("delete-products"))
+                                    {{-- @if(auth()->user()->can("delete-products"))
                                         <button type="button" class="btn btn-sm btn-danger" data-product-id="{{ $product->id }}" data-toggle="modal" data-target="#deleteProductModal">
                                             <i class="far fa-trash-alt"></i>
                                             Delete
                                         </button>
-                                    @endif
+                                    @endif --}}
 
                                     @if(auth()->user()->can("update-products"))
                                         <a class="btn btn-sm btn-warning" href="{{ route('product.edit', ['id' => $product->id]) }}">

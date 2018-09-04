@@ -8,7 +8,8 @@
             </div>
             <div class="card-body">
                 <form method="post" action="{{ route('user.update', ['user' => $user]) }}" autocomplete="off">
-                    @csrf @method("patch")
+                    @csrf
+                    @method("patch")
 
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>

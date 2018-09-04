@@ -35,7 +35,7 @@ $("#invoice-table-js").DataTable({
       .reduce((a, b) => intVal(a) + intVal(b), 0);
 
     // Update footer
-    $(api.column(2).footer()).html(`TOTAL: AZN ${pageTotal}`);
+    $(api.column(2).footer()).html(`TOTAL: AZN ${Math.round(pageTotal * 100) / 100}`);
   },
 });
 
